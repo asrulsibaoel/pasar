@@ -1,0 +1,84 @@
+{% extends '@layout/nosidebar.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <div class="app no-padding no-footer layout-static">
+        <div class="session-panel">
+            <div class="session">
+                <div class="session-content">
+                    <div class="card card-block form-layout">
+                        <form role="form" method="post" enctype="multipart/form-data" action="/register" id="validate">
+                            <div class="text-xs-center m-b-3"><img src="images/logo-icon.png" height="80" alt=""
+                                                                   class="m-b-1"><h5>Register now!</h5>
+
+                                <p class="text-muted">Create an account to continue.</p></div>
+                            <fieldset class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email"
+                                       class="form-control form-control-lg email"
+                                       id="email"
+                                       placeholder="email address"
+                                       name="email"
+                                       required>
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control form-control-lg pass1"
+                                       id="password"
+                                       placeholder="password"
+                                       name="password"
+                                       required
+                                       minlength="6">
+                            </fieldset>
+                            <fieldset class="form-group"><label for="cpassword">Confirm password</label>
+                                <input type="password" class="form-control form-control-lg pass2" id="cpassword"
+                                       placeholder="confirm password" required minlength="6">
+                            </fieldset>
+                            <button class="btn btn-primary btn-block btn-lg" type="submit">Create your account</button>
+                            <div class="divider"><span>OR</span></div>
+                            <div class="text-xs-center">
+                                <p>Signup with your social account</p>
+                                <a href="javascript:;" class="btn btn-icon-icon btn-facebook btn-lg m-b-1 m-r-1">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="javascript:;" class="btn btn-icon-icon btn-github btn-lg m-b-1 m-r-1">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                                <a href="javascript:;" class="btn btn-icon-icon btn-google btn-lg m-b-1 m-r-1">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                                <a href="javascript:;" class="btn btn-icon-icon btn-linkedin btn-lg m-b-1 m-r-1">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <footer class="text-xs-center p-y-1">
+                    <p><a href="/forgot">Forgot password? </a>&nbsp;&nbsp;·&nbsp;&nbsp;
+                        <a href="/login">Log in instead</a>
+                    </p>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $("body").on("keyup", ".pass1, .pass2", function () {
+            var pass1 = $(".pass1").val();
+            var pass2 = $(".pass2").val();
+
+            if (pass1 == pass2 && pass1 !== "") {
+                $("#btnSubmit").removeAttr('disabled');
+                $("#alertPass").attr('style', 'display:none');
+            } else if (pass1 == "" || pass2 == "") {
+                $("#btnSubmit").attr('disabled', 'disabled');
+            } else {
+                $("#btnSubmit").attr('disabled', 'disabled');
+                $("#alertPass").attr('style', 'display:');
+            }
+
+        });
+
+    </script>
+{% endblock %}

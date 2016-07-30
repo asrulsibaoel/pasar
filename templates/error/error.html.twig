@@ -1,0 +1,22 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}{{ status }} {{ reason }}{% endblock %}
+
+{% block content %}
+    <div class="app error-page no-padding no-footer layout-static">
+        <div class="session-panel">
+            <div class="session">
+                <div class="session-content text-center">
+                    <div>
+                        <div class="error-number text-muted"><strong>500</strong></div>
+                        <div class="m-x-1 m-y-1"><h6><strong>We have an internal server error!</strong></h6>
+
+                            <p>Sorry something went wrong</p></div>
+                        <div class="m-x-1 m-y-0"><a href="index-2.html" class="btn btn-success">Return home </a><a
+                                    href="javascript:;" class="center-block p-t-1">Report this error</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

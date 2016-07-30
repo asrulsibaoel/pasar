@@ -1,0 +1,13 @@
+vendor/*
+data/
+.vagrant/
+Homestead.yaml
+Vagrantfile
+.idea
+composer.phar
+composer.lock
+phpunit.xml
+bin/
+build/
+nbproject/
+/public/upload/images/
