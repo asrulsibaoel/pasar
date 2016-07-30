@@ -2,6 +2,7 @@
 namespace App\Http;
 
 use App\Http\Action\AddCategoryAction;
+use App\Http\Action\ApiLoginAction;
 use App\Http\Action\HomePageAction;
 use App\Http\Action\LoginAction;
 use App\Http\Action\NewUserAction;
@@ -14,6 +15,7 @@ use App\Http\Container\RegisteredUserActionFactory;
 use App\Http\Container\RegisterUserActionFactory;
 use App\Http\Container\NewUserActionFactory;
 use App\Http\Container\UserManagementActionFactory;
+use App\Http\Container\ApiLoginActionFactory;
 
 class Routes
 {
@@ -27,7 +29,8 @@ class Routes
                     NewUserAction::class => NewUserActionFactory::class,
                     RegisteredUserAction::class => RegisteredUserActionFactory::class,
                     LoginAction::class => LoginActionFactory::class,
-                    UserManagementAction::class => UserManagementActionFactory::class
+                    UserManagementAction::class => UserManagementActionFactory::class,
+                    ApiLoginAction::class => ApiLoginActionFactory::class
                 ],
             ],
             'routes' => [
@@ -71,6 +74,12 @@ class Routes
                     'name' => 'add-category',
                     'path' => '/add-category',
                     'middleware' => AddCategoryAction::class,
+                    'allowed_methods' => ['GET', 'POST']
+                ],
+                [
+                    'name' => 'api-login',
+                    'path' => '/api-login',
+                    'middleware' => ApiLoginAction::class,
                     'allowed_methods' => ['GET', 'POST']
                 ]
             ],
