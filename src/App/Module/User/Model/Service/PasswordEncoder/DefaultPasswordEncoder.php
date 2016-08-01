@@ -7,7 +7,7 @@ class DefaultPasswordEncoder implements PasswordEncoder
 {
     public function encode(string $password) : string
     {
-        return password_hash($password, PASSWORD_DEFAULT);
+        return md5($password);
     }
 
     public function verify(string $rawPassword, string $encodedPassword) : bool

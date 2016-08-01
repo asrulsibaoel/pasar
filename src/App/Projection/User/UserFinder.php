@@ -37,7 +37,7 @@ class UserFinder
         return $this->connection->fetchAll(sprintf("SELECT * FROM %s", Table::USER));
     }
 
-    function findById(string $userId)
+    public function findById(string $userId)
     {
         $stmt = $this->connection->prepare(sprintf("SELECT * FROM %s where id= :user_id", Table::USER));
         $stmt->bindValue('user_id', $userId);
@@ -45,16 +45,26 @@ class UserFinder
         return $stmt->fetch();
     }
 
-    public function findWhere($where = array())
+    public function checkLogin(string $email, string $password)
     {
-        foreach($where as $key => $val){
-            
-        }
-
-        $stmt = $this->connection->prepare(sprintf("SELECT * FROM %s where id= :user_id", Table::USER));
-        $stmt->bindValue('user_id', $userId);
+        $stmt = $this->connection->prepare(sprintf("SELECT * FROM %s where email= :email AND password= :password", Table::USER));
+        $stmt->bindValue('email', $email);
+        $stmt->bindValue('password', md5($password));
         $stmt->execute();
-        return $stmt->fetchAll();
+
+        return $stmt->fetch();
     }
+
+//    public function findWhere($where = array())
+//    {
+//        foreach($where as $key => $val){
+//
+//        }
+//
+//        $stmt = $this->connection->prepare(sprintf("SELECT * FROM %s where id= :user_id", Table::USER));
+//        $stmt->bindValue('user_id', $userId);
+//        $stmt->execute();
+//        return $stmt->fetchAll();
+//    }
 
 }

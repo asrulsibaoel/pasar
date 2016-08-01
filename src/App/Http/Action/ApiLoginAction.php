@@ -4,6 +4,7 @@
 namespace App\Http\Action;
 
 
+use App\Projection\User\UserFinder;
 use LosMiddleware\LosLog\StaticLogger;
 use Prooph\Common\Messaging\MessageFactory;
 use Prooph\ServiceBus\CommandBus;
@@ -31,15 +32,26 @@ class ApiLoginAction
     private $commandFactory;
 
     /**
+     * @var UserFinder
+     */
+    private $user;
+
+    /**
      * @param ServerUrlHelper $urlHelper
      * @param CommandBus $commandBus
      * @param MessageFactory $commandFactory
      */
-    public function __construct(ServerUrlHelper $urlHelper, CommandBus $commandBus, MessageFactory $commandFactory)
+    public function __construct(
+        ServerUrlHelper $urlHelper,
+        CommandBus $commandBus,
+        MessageFactory $commandFactory,
+        UserFinder $user
+    )
     {
         $this->urlHelper = $urlHelper;
         $this->commandBus = $commandBus;
         $this->commandFactory = $commandFactory;
+        $this->user = $user;
     }
 
     /**
@@ -48,23 +60,21 @@ class ApiLoginAction
      * @param callable|null $out
      * @return ResponseInterface
      */
-    public function __invoke(
+    public
+    function __invoke(
         RequestInterface $request,
         ResponseInterface $response,
         callable $out = null
     ): ResponseInterface
     {
         // TODO: Implement __invoke() method.
-        $data = [
-            [1, 2, 3, 4, 5, 6],
-            [1, 2, 3, 4, 5, 6],
-            [1, 2, 3, 4, 5, 6],
-            [1, 2, 3, 4, 5, 6],
-            [1, 2, 3, 4, 5, 6]
-        ];
+        $data = [];
 
         if ($request->getMethod() == 'POST') {
-            StaticLogger::save($request);
+            $data = $request->getParsedBody();
+//            StaticLogger::save($data['email'], $data['password']);
+            $user = $this->user->checkLogin($data['email'], $data['password']);
+            $data = (array) $user;
         }
         return new JsonResponse($data);
     }
