@@ -6,7 +6,7 @@ namespace App\Module\Product\Model;
 use App\Module\Interfaces\PrimaryKeyInterface;
 use Rhumsaa\Uuid\Uuid;
 
-class ProductId implements PrimaryKeyInterface
+class ProductId
 {
     private $uuid;
 
@@ -20,7 +20,7 @@ class ProductId implements PrimaryKeyInterface
         return new self(Uuid::uuid4());
     }
 
-    public static function fromString(\string $uuid) : ProductId
+    public static function fromString(string $uuid) : ProductId
     {
         return new self(Uuid::fromString($uuid));
     }

@@ -30,6 +30,11 @@ class ApiLoginAction
      */
     private $commandFactory;
 
+    /**
+     * @param ServerUrlHelper $urlHelper
+     * @param CommandBus $commandBus
+     * @param MessageFactory $commandFactory
+     */
     public function __construct(ServerUrlHelper $urlHelper, CommandBus $commandBus, MessageFactory $commandFactory)
     {
         $this->urlHelper = $urlHelper;
@@ -37,14 +42,28 @@ class ApiLoginAction
         $this->commandFactory = $commandFactory;
     }
 
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @param callable|null $out
+     * @return ResponseInterface
+     */
     public function __invoke(
         RequestInterface $request,
         ResponseInterface $response,
         callable $out = null
-    ): ResponseInterface {
+    ): ResponseInterface
+    {
         // TODO: Implement __invoke() method.
-        $data = [];
-        if($request->getMethod() == 'POST'){
+        $data = [
+            [1, 2, 3, 4, 5, 6],
+            [1, 2, 3, 4, 5, 6],
+            [1, 2, 3, 4, 5, 6],
+            [1, 2, 3, 4, 5, 6],
+            [1, 2, 3, 4, 5, 6]
+        ];
+
+        if ($request->getMethod() == 'POST') {
             StaticLogger::save($request);
         }
         return new JsonResponse($data);

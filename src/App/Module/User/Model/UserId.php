@@ -5,7 +5,7 @@ namespace App\Module\User\Model;
 
 use Rhumsaa\Uuid\Uuid;
 
-final class UserId implements PrimaryKeyInterface
+final class UserId
 {
     private $uuid;
 
@@ -19,7 +19,7 @@ final class UserId implements PrimaryKeyInterface
         return new self(Uuid::uuid4());
     }
 
-    public static function fromString(\string $uuid) : UserId
+    public static function fromString(string $uuid) : UserId
     {
         return new self(Uuid::fromString($uuid));
     }

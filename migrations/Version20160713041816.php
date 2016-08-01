@@ -20,9 +20,8 @@ class Version20160713041816 extends AbstractMigration
         $kota = $schema->createTable(Table::KOTA);
 
         $kota->addColumn('id', 'string', ['length' => 36]);
-        $kota->addColumn('nama_kota', 'string', ['length' => 50]);
-        $kota->addColumn('nama_kabupaten', 'string', ['length' => 50]);
-        $kota->addColumn('nama_provinsi', 'string', ['length' => 50]);
+        $kota->addColumn('city', 'string', ['length' => 50]);
+        $kota->addColumn('province', 'string', ['length' => 50]);
         $kota->setPrimaryKey(['id']);
     }
 

@@ -7,7 +7,7 @@ namespace App\Module\Category\Model;
 use App\Module\Interfaces\PrimaryKeyInterface;
 use Rhumsaa\Uuid\Uuid;
 
-class CategoryId implements PrimaryKeyInterface
+class CategoryId
 {
     /**
      * @var Uuid
@@ -24,7 +24,7 @@ class CategoryId implements PrimaryKeyInterface
         return new self(Uuid::uuid4());
     }
 
-    public static function fromString(\string $uuid) : CategoryId
+    public static function fromString(string $uuid) : CategoryId
     {
         return new self(Uuid::fromString($uuid));
     }

@@ -9,7 +9,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20160713041827 extends AbstractMigration
+class Version20160731125240 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -17,10 +17,15 @@ class Version20160713041827 extends AbstractMigration
     public function up(Schema $schema)
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $kategori = $schema->createTable(Table::KATEGORI);
-        $kategori->addColumn('id', 'string', ['length' => 36]);
-        $kategori->addColumn('category_name', 'string', ['length' => 30]);
-        $kategori->setPrimaryKey(['id']);
+        $lapak = $schema->createTable(Table::LAPAK);
+
+        $lapak->addColumn('id', 'string', ['length' => 36]);
+        $lapak->addColumn('pasar_id', 'string', ['length' => 36]);
+        $lapak->addColumn('user_id', 'string', ['length' => 36]);
+        $lapak->addColumn('lapak_name', 'string', ['length' => 30]);
+        $lapak->addColumn('description', 'text', []);
+
+        $lapak->setPrimaryKey(['id']);
     }
 
     /**
@@ -29,6 +34,6 @@ class Version20160713041827 extends AbstractMigration
     public function down(Schema $schema)
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $schema->dropTable(Table::KATEGORI);
+        $schema->dropTable(Table::LAPAK);
     }
 }

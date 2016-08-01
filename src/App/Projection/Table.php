@@ -10,9 +10,11 @@ namespace App\Projection;
  */
 final class Table
 {
-    const USER = 'tb_user';
-    const PRODUCT = 'tb_product';
-    const KOTA = 'tb_kota';
-    const KONTEN = 'tb_konten';
-    const KATEGORI = 'tb_kategori';
+    const USER = 'read_user';
+    const PRODUCT = 'read_product';
+    const KOTA = 'read_town';
+    const KONTEN = 'read_content';
+    const KATEGORI = 'read_category';
+    const PASAR = 'read_pasar';
+    const LAPAK = 'read_lapak';
 }
