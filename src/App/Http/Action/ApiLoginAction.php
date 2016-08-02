@@ -71,10 +71,15 @@ class ApiLoginAction
         $data = [];
 
         if ($request->getMethod() == 'POST') {
-            $data = $request->getParsedBody();
+            $body = $request->getParsedBody();
 //            StaticLogger::save($data['email'], $data['password']);
-            $user = $this->user->checkLogin($data['email'], $data['password']);
-            $data = (array) $user;
+            $user = $this->user->checkLogin($body['email'], $body['password']);
+            if(!empty($user)){
+                $data = (array) $user;
+                $data['login'] = true;
+            } else {
+                $data['login'] = false;
+            }
         }
         return new JsonResponse($data);
     }
