@@ -16,12 +16,14 @@ final class RegisterUser extends Command implements PayloadConstructable
     public static function withData(
         string $userId,
         string $email,
-        string $password
+        string $password,
+        string $authKey
     ) : RegisterUser {
         return new self([
             'user_id' => (string) $userId,
             'email' => (string) $email,
-            'password' => (string) $password
+            'password' => (string) $password,
+            'auth_key' => (string) $authKey
         ]);
     }
 
@@ -38,5 +40,10 @@ final class RegisterUser extends Command implements PayloadConstructable
     public function password() : string
     {
         return $this->payload['password'];
+    }
+
+    public function authKey() : string
+    {
+        return $this->payload['auth_key'];
     }
 }

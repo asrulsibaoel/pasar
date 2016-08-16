@@ -69,13 +69,13 @@ final class User extends AggregateRoot
     /**
      * @var string
      */
-    private $username = null;
+    private $authKey = null;
 
-    public static function registerWithData(UserId $userId, EmailAddress $email, string $password) : User
+    public static function registerWithData(UserId $userId, EmailAddress $email, string $password, string $authKey) : User
     {
         $self = new self();
 
-        $self->recordThat(UserWasRegistered::withData($userId, $email, $password));
+        $self->recordThat(UserWasRegistered::withData($userId, $email, $password, $authKey));
 
         return $self;
     }
@@ -108,6 +108,7 @@ final class User extends AggregateRoot
         $this->userId = $event->userId();
         $this->email = $event->email();
         $this->password = $event->password();
+        $this->authKey = $event->authKey();
         $this->profile = [];
     }
 
@@ -195,9 +196,9 @@ final class User extends AggregateRoot
     /**
      * @return string
      */
-    public function username() : string
+    public function authKey() : string
     {
-        return $this->username;
+        return $this->authKey;
     }
 
     /**

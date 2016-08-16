@@ -31,7 +31,7 @@ final class RegisterUserHandler
     {
         $password = $this->encoder->encode($command->password());
 
-        $user = User::registerWithData($command->userId(), $command->email(), $password);
+        $user = User::registerWithData($command->userId(), $command->email(), $password, $command->authKey());
 
         $this->userCollection->add($user);
     }

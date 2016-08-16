@@ -20,11 +20,6 @@ class ApiSendNotifMessageAction
     private $user;
 
     /**
-     * @var
-     */
-    private $message;
-
-    /**
      * @var CommandBus
      */
     private $commandBus;
@@ -63,7 +58,7 @@ class ApiSendNotifMessageAction
         $data = [];
 
         if ($request->getMethod() == "POST") {
-
+            
         }
 
         return new JsonResponse($data);

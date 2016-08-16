@@ -16,6 +16,8 @@ use App\Http\Container\RegisterUserActionFactory;
 use App\Http\Container\NewUserActionFactory;
 use App\Http\Container\UserManagementActionFactory;
 use App\Http\Container\ApiLoginActionFactory;
+use App\Http\Action\ApiRegisterUserAction;
+use App\Http\Container\ApiRegisterUserActionFactory;
 
 class Routes
 {
@@ -30,7 +32,8 @@ class Routes
                     RegisteredUserAction::class => RegisteredUserActionFactory::class,
                     LoginAction::class => LoginActionFactory::class,
                     UserManagementAction::class => UserManagementActionFactory::class,
-                    ApiLoginAction::class => ApiLoginActionFactory::class
+                    ApiLoginAction::class => ApiLoginActionFactory::class,
+                    ApiRegisterUserAction::class => ApiRegisterUserActionFactory::class
                 ],
             ],
             'routes' => [
@@ -81,6 +84,12 @@ class Routes
                     'path' => '/api-login',
                     'middleware' => ApiLoginAction::class,
                     'allowed_methods' => ['GET', 'POST']
+                ],
+                [
+                    'name' => 'api-register',
+                    'path' => '/api-register',
+                    'middleware' => ApiRegisterUserAction::class,
+                    'allowed_methods' => ['POST']
                 ]
             ],
         ];

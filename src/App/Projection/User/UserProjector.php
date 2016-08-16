@@ -22,6 +22,8 @@ use LosMiddleware\LosLog\StaticLogger;
 class UserProjector
 {
 
+    private $tokenSender;
+
     /**
      *
      * @var Connection
@@ -50,7 +52,13 @@ class UserProjector
             'id' => $event->userId()->toString(),
             'email' => $event->email()->toString(),
             'password' => $event->password(),
+            'auth_key' => $event->authKey()
         ]);
+    }
+
+    public function onNotificationWasSended()
+    {
+
     }
 
 }

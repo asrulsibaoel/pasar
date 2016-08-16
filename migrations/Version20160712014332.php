@@ -20,7 +20,7 @@ class Version20160712014332 extends AbstractMigration
         $user = $schema->createTable(Table::USER);
 
         $user->addColumn('id', 'string', ['length' => 36]);
-        $user->addColumn('auth_token', 'string', ['length' => 36])->setNotnull(false);
+        $user->addColumn('auth_key', 'string', ['length' => 255])->setNotnull(false);
         $user->addColumn('no_tlp', 'integer', ['length' => 12])->setNotnull(false);
         $user->addColumn('email', 'string', ['length' => 30]);
         $user->addColumn('password', 'string', ['length' => 64]);

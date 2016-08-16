@@ -5,6 +5,7 @@ namespace App\Module\User\Model\Event;
 
 use App\Module\User\Model\EmailAddress;
 use App\Module\User\Model\UserId;
+use LosMiddleware\LosLog\StaticLogger;
 use Prooph\EventSourcing\AggregateChanged;
 
 final class UserWasRegistered extends AggregateChanged
@@ -15,16 +16,20 @@ final class UserWasRegistered extends AggregateChanged
 
     private $password;
 
-    public static function withData(UserId $userId, EmailAddress $email, $password) : UserWasRegistered
+    private $authKey;
+
+    public static function withData(UserId $userId, EmailAddress $email, $password, string $authKey) : UserWasRegistered
     {
         $event = self::occur($userId->toString(), [
             'email' => $email->toString(),
             'password' => $password,
+            'authKey' => $authKey
         ]);
 
         $event->userId = $userId;
         $event->email = $email;
         $event->password = $password;
+        $event->authKey = $authKey;
 
         return $event;
     }
@@ -54,5 +59,14 @@ final class UserWasRegistered extends AggregateChanged
         }
 
         return $this->password;
+    }
+
+    public function authKey()
+    {
+        if (is_null($this->authKey)) {
+            $this->authKey = $this->payload['authKey'];
+        }
+
+        return $this->authKey;
     }
 }
